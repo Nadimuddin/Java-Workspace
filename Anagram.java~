@@ -10,7 +10,7 @@ class Anagram
 
 		//Take 1st string
 		str1 = u.getStringInput();
-
+		
 		//Take 2nd string
 		System.out.println("Enter 2nd string");
 		str2 = u.getStringInput();			

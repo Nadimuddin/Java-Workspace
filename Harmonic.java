@@ -18,7 +18,6 @@ class Harmonic
 		
 	}
 	
-	
 	/*Method to calculate Nth value of harmonic series*/
 	static int[] add(int nem1,int dem1,int nem2,int dem2) 
 	{

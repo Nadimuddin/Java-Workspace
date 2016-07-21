@@ -1,5 +1,5 @@
-
-import Utility.Utility;
+package com.bridgelabz.main;
+import com.bridgelabz.utility.Utility;
 class Harmonic
 {
 	public static void main(String args[]) throws Exception
@@ -17,7 +17,6 @@ class Harmonic
 		System.out.println("in decimal ->  "+b);
 		
 	}
-	
 	
 	/*Method to calculate Nth value of harmonic series*/
 	static int[] add(int nem1,int dem1,int nem2,int dem2) 

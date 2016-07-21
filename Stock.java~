@@ -1,76 +1,129 @@
 package com.bridgelabz.main;
 import com.bridgelabz.utility.Utility;
+import com.bridgelabz.utility.ReadFile;
 public class Stock
 {
-	Utility u;
-	int stockNum,shareNum[],i,j,k=0,stockPrice[],sharePrice[][],totalStockPrice=0;
-	String stockName[],shareName[][];
-	public static void main(String arg[])throws Exception {
-		new Stock();
-	}
-	public Stock()throws Exception
+	public static void main(String arg[])throws Exception
 	{
-		// TODO Auto-generated constructor stub
+
+		int i,j,k,flag;
+
 		
-		u = new Utility();
-		System.out.print("Enter no. of stock-> ");
-		stockNum = u.getIntegerInput();  	//get total No. of stocks
-		stockName = new String[stockNum];	//Name of each stock
-		stockPrice = new int[stockNum];		//Stock price
-		shareNum = new int[stockNum];		//number of shares in respective stock
+		//variable to store total number of stocks in file
+		int stockNum;
+
+		//total price of stocks
+		int totalStockPrice=0;
+
+		//total number of shares
+		int totalShareNum=0;
+		Utility u = new Utility();
+		ReadFile read = new ReadFile();
+
+		//array to store all stock name
+		String stockName[];
+
+		System.out.print("Reading from files....\n");
+
+		/*reading file &
+		break contents of file into line & store them in array of string*/
+		stockName = read.readFile("Stock").split("\n");
 		
-		System.out.println("Enter name of stocks  & no. of shares it them");
-		for(i=0; i<stockNum; i++)
+		//calculate number of stocks by calculating array og length
+		stockNum = stockName.length;
+		System.out.println("-----**********-----\nThere are total "+stockNum+" number of stocks");
+		
+		for(i=0; i<stockNum; i++)	//loop for printing stock name
 		{
-			System.out.print("Name of stock"+(i+1)+"-> ");
-			stockName[i] = u.getStringInput();		//Get name of stocks
-			System.out.print("No. of shares in "+stockName[i]+" stock-> ");
-			shareNum[i] = u.getIntegerInput();		//Get no. of shares in respective stock
-			if(k < shareNum[i])
-				k = shareNum[i];
+			System.out.println((i+1)+" "+stockName[i]);
 		}
-		shareName = new String[stockNum][k];
-		sharePrice = new int[stockNum][k];
-		System.out.println("Enter name & price of shares");
+		System.out.println();
 		
-		/*loop for getting share name of each stock*/
+		//variable to store number of shares in respective stock
+		int shareNum[] = new int[stockNum];
+
+		//array to store price of each stock
+		int stockPrice[] = new int [stockNum];
+
+		//array to sotre content of all files
+		String shareFileContent[] = new String[stockNum];
+
 		for(i=0; i<stockNum; i++)
 		{
-			for(j=0; j<shareNum[i]; j++)
+			shareFileContent[i] = read.readFile(stockName[i].trim());
+			shareNum[i] = shareFileContent[i].split("\n").length;
+			totalShareNum = totalShareNum+shareNum[i];
+		}
+
+		//array to store all share's name
+		String shareName[] = new String[totalShareNum];
+
+		//temporary array to store share's price in the form of strings
+		String sharePriceTemp[] = new String[totalShareNum];
+
+		//array to store share's price in the form of number
+		int sharePrice[] = new int[totalShareNum];
+		
+		for(i=0; i<totalShareNum; i++)	//setting all elemetns of array to empty
+		{
+			shareName[i]="";
+			sharePriceTemp[i]="";
+		}
+
+		k=0;
+
+		//execute loop till number of stocks
+		for(i=0; i<stockNum; i++)
+		{
+			flag = 1;
+
+			/*another loop to read file content character by character
+				to split share's name & price, because share's name & share's price are in single file*/
+			for(j=0; j<shareFileContent[i].length(); j++)
 			{
-				System.out.print("Share"+(j+1)+" of "+stockName[i]+" stock-> ");
-				shareName[i][j] = u.getStringInput();	//Get name of each share
-				System.out.print("Price of "+shareName[i][j]+"->");
-				sharePrice[i][j] = u.getIntegerInput();	//Get price of each share
+
+				//if it found ' '(space) then start storing share's price
+				if(shareFileContent[i].charAt(j) == ' ')
+				{
+					flag = 2;
+					j++;
+				}
+
+				//if it found '\n'(new line) then start storing share's name
+				else if(shareFileContent[i].charAt(j) == '\n')
+				{
+					flag = 1;
+					k++;
+					j++;
+				}
+				if(flag == 1)
+					shareName[k] =shareName[k]+shareFileContent[i].charAt(j);//concatenate string with another character
+				else
+				{
+					sharePriceTemp[k] = sharePriceTemp[k]+shareFileContent[i].charAt(j);//concatenate string with another character
+
+					// convert string to integer
+					sharePrice[k] = Integer.parseInt(sharePriceTemp[k]);
+				}
 			}
-			System.out.println();
+			k++;
 		}
-		
-		System.out.println("        ******------STOCK REPORT------******");
-		/* loop for printing stock report */
+		k=0;
+
+		/*loop for displaying stock report*/
 		for(i=0; i<stockNum; i++)
 		{
-			System.out.print("Shares in "+stockName[i]+" stock\t->\t");
+			System.out.println("Shares in "+stockName[i]+":");
 			for(j=0; j<shareNum[i]; j++)
-				System.out.print(shareName[i][j]+"("+sharePrice[i][j]+")\t");
-			System.out.println("\n");
-		}
-		
-		
-		System.out.println("        ******------PRICE OF STOCKS------******");
-		/*Calculating price of stocks*/
-		for(i=0; i<stockNum; i++)
-		{
-			for(j=0; j<shareNum[i]; j++)
-			{
-				stockPrice[i] = stockPrice[i]+sharePrice[i][j];
+			{ 
+				stockPrice[i] = stockPrice[i]+sharePrice[k];
+				System.out.println(shareName[k]+"("+sharePrice[k]+")");
+				k++;
 			}
 			System.out.println("Price of "+stockName[i]+" stock-> "+stockPrice[i]);
-		}
-		for(i=0; i<stockNum; i++)
-		{
+			System.out.println("-------------------------------------------");
 			totalStockPrice = totalStockPrice+stockPrice[i];
 		}
-		System.out.println("Total price of stocks-> "+totalStockPrice);
+		System.out.println("Total price of all stocks--> "+totalStockPrice);
 	}
 }
