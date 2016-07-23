@@ -18,8 +18,7 @@ public class ReadFile
 			sb.append(line);
 			line = br.readLine();
 			if(line != null)
-				sb.append('\n');
-				
+				sb.append('\n');	
 		}
 		return filecontent = sb.toString();
 	}

@@ -1,29 +1,107 @@
 package com.bridgelabz.utility;
+import com.bridgelabz.utility.Node;
 public class LinkedList
 {
-	MyNode head;
-	MyNode temp;
+	Node head;
+	Node temp;
+	String data;
 	public void add(String data)
 	{
-		head = new MyNode();
-		//head = new MyNode(data);
-		/*if(head == null)
-			Node head =new Node(data);
+		if(head == null)
+		{
+			head =new Node(data);
+		}
 		else
 		{
-			Node temp = new Node(data);
-			head.setNext(temp);
-		}*/
+			Node current = head;
+			temp = new Node(data);
+			if(head != null)
+			{
+				while(current.getNext() != null)
+				{
+					current = current.getNext();
+				}
+				current.setNext(temp);
+			}
+		}
+	}
+
+	public void printAllData()
+	{
+		Node current = head;
+		if(head == null)
+			System.out.println("List is empty");
+		else
+		{
+			while(current != null)
+			{
+				System.out.print(current.data+"->");
+				current = current.getNext();
+			}
+			System.out.println(current);
+		}
+	}
+
+	public boolean searchData(String str)
+	{
+		Node current = head;
+		if(head == null)
+			System.out.println("List is empty");
+		else
+		{
+			while(current != null)
+			{
+				if(current.data.equals(str))
+					return true;
+				current = current.getNext();
+			}
+			if(current == null)
+				return false;
+		}
+		return false;
+	}
+
+	public void removeData(String str)
+	{
+		Node current = head;
+		if(head == null)
+			System.out.println("List is empty");
+		else
+		{
+			while(current != null)
+			{
+				if(head.data.equals(str))
+				{
+					head = head.getNext();
+					return;
+				}
+				else if(current.getNext().data.equals(str))
+				{
+						current.setNext(current.getNext().getNext());
+						return;
+				}
+				/*if(current.data.equals(str))
+				{
+					if(current == head)
+						head = head.getNext();
+					else
+						
+				}*/
+				current = current.getNext();
+			}
+			if(current == null)
+				return;
+		}
 	}
 }
-class MyNode
+/*class Node
 {
 	String data;
 	Node next;
 
-	public void Node()
+	public Node()
 	{}
-	void MyNode(String dataValue)
+	public Node(String dataValue)
 	{
 		data = dataValue;
 		next = null;
@@ -32,4 +110,8 @@ class MyNode
 	{
 		next = nextValue;
 	}
-}
+	public Node getNext()
+	{
+		return next;
+	}
+}*/

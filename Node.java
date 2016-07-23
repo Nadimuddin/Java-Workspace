@@ -1,20 +1,22 @@
-package Utility;
-public class Node
+package com.bridgelabz.utility; 
+class Node
 {
-	int data;
-	Object head;
-	public void add(Object data)
+	String data;
+	Node next;
+
+	public Node()
+	{}
+	public Node(String dataValue)
 	{
-		if(head == null)
-		{
-			System.out.println("head was null");
-			head = data;
-		}
-		else
-			System.out.println("head is not null");
-		
-/*		this.data = data;
-		nptr = this.data;
-		return nptr;*/
+		data = dataValue;
+		next = null;
+	}
+	public void setNext(Node nextValue)
+	{
+		next = nextValue;
+	}
+	public Node getNext()
+	{
+		return next;
 	}
 }

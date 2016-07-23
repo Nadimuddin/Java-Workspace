@@ -7,6 +7,8 @@ public class Testing
 	public static void main(String arg[]) throws Exception
 	{
 		Utility u = new Utility();
+		DataInputStream dis = new DataInputStream();
+		
 		/*BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	 	int i,j;
 	 	String str = "Sarfaroshi ke tamanna ab hamaare dil me hain";
@@ -19,7 +21,7 @@ public class Testing
 		Node n1 = new Node();
 		n.add("1");
 		String str = n.toString();*/
-	 	System.out.println("This is Testing");
+	 	System.out.println();
 		
 	 
 	}

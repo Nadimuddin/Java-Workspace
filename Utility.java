@@ -16,7 +16,7 @@ public class Utility
 		catch(Exception e){
 			System.out.println("IO Error you have provide wrong type of input");
 		}
-		return num;		
+		return num;
 	}
 	
 	public double getDoubleInput()
@@ -88,6 +88,17 @@ public class Utility
 				else if(compareWordAlphabetically(target,wordList[mid]) == 1)
 					low = mid+1;
 			}
+		}
+		return index;
+	}
+	
+	public int searchingWordInArray(String wordList[], String target)
+	{
+		int i,index=-1;
+		for(i=0; i<wordList.length; i++)
+		{
+			if(wordList[i] == target)
+				return i = index;
 		}
 		return index;
 	}

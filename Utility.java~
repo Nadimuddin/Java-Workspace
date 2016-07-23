@@ -92,6 +92,17 @@ public class Utility
 		return index;
 	}
 	
+	public int searchingWordInArray(String wordList[], String target)
+	{
+		int i,index=-1;
+		for(i=0; i<wordList.length; i++)
+		{
+			if(wordList[i] == target)
+				return i = index;
+		}
+		return index;
+	}
+	
 	public int compareWordAlphabetically(String str1, String str2)
 	{
 		String str = "abcdefghijklmnopqrstuvwxyz";
@@ -234,7 +245,7 @@ public class Utility
 		return flag;
 	}
 
-	public boolean IsLeapYear(int year)
+	public boolean isLeapYear(int year)
 	{
 		boolean flag = false;
 		if(year%4 == 0)
