@@ -16,7 +16,7 @@ public class Utility
 		catch(Exception e){
 			System.out.println("IO Error you have provide wrong type of input");
 		}
-		return num;		
+		return num;
 	}
 	
 	public double getDoubleInput()
@@ -95,10 +95,14 @@ public class Utility
 	public int searchingWordInArray(String wordList[], String target)
 	{
 		int i,index=-1;
+		System.out.println("length:  "+wordList.length);
 		for(i=0; i<wordList.length; i++)
 		{
-			if(wordList[i] == target)
-				return i = index;
+			if(wordList[i].equals(target))
+			{
+				System.out.println("index:  "+i);
+				return index = i;
+			}
 		}
 		return index;
 	}

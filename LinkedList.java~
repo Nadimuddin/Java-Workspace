@@ -1,14 +1,15 @@
 package com.bridgelabz.utility;
-public class LinkedList
+import com.bridgelabz.utility.Node;
+public class LinkedList<T>
 {
-	Node head;
+	Node head<Integer>;
 	Node temp;
-	String data;
-	public void add(String data)
+	T data;
+	public void add(int data)
 	{
 		if(head == null)
 		{
-			head =new Node(data);
+			head = new Node(data);
 		}
 		else
 		{
@@ -17,15 +18,42 @@ public class LinkedList
 			if(head != null)
 			{
 				while(current.getNext() != null)
-				{
 					current = current.getNext();
-				}
 				current.setNext(temp);
 			}
 		}
 	}
 
-	public void printAllData()
+	/*public void add(int num)
+	{
+		Node <Integer> head = new Node();
+		this.head = head;
+		Node<Integer> current = head;
+		temp = new Node(num);
+		
+		if(head.data > num)
+		{
+			head = temp;
+			temp.setNext(current);
+		}
+		else
+		{
+			while(num < current.data)
+			{
+				head = new Node(num);
+			}
+			if(head != null)
+			{
+				while(current.getNext() != null)
+					current = current.getNext();
+				current.setNext(temp);
+			}
+		}
+	}*/
+
+	//public void add(T data, int pos)
+
+	public void displayData()
 	{
 		Node current = head;
 		if(head == null)
@@ -59,6 +87,46 @@ public class LinkedList
 		}
 		return false;
 	}
+	
+	public boolean searchData(int num)
+	{
+		Node current = head;
+		if(head == null)
+			System.out.println("List is empty");
+		else
+		{
+			while(current != null)
+			{
+				if(current.data == num)
+					return true;
+				current = current.getNext();
+			}
+			if(current == null)
+				return false;
+		}
+		return false;
+	}
+	public int searchDataIndex(String str)
+	{
+		int index = -1;
+		int i=0;
+		Node current = head;
+		if(head == null)
+			System.out.println("List is empty");
+		else
+		{
+			while(current != null)
+			{
+				if(current.data.equals(str))
+					return index = i;
+				current = current.getNext();
+				i++;
+			}
+			if(current == null)
+				return -1;
+		}
+		return index;
+	}
 
 	public void removeData(String str)
 	{
@@ -79,13 +147,32 @@ public class LinkedList
 						current.setNext(current.getNext().getNext());
 						return;
 				}
-				/*if(current.data.equals(str))
+				current = current.getNext();
+			}
+			if(current == null)
+				return;
+		}
+	}
+	
+	public void removeData(int num)
+	{
+		Node current = head;
+		if(head == null)
+			System.out.println("List is empty");
+		else
+		{
+			while(current != null)
+			{
+				if(head.data == num)
 				{
-					if(current == head)
-						head = head.getNext();
-					else
-						
-				}*/
+					head = head.getNext();
+					return;
+				}
+				else if(current.getNext().data == num)
+				{
+						current.setNext(current.getNext().getNext());
+						return;
+				}
 				current = current.getNext();
 			}
 			if(current == null)
@@ -93,24 +180,3 @@ public class LinkedList
 		}
 	}
 }
-/*class Node
-{
-	String data;
-	Node next;
-
-	public Node()
-	{}
-	public Node(String dataValue)
-	{
-		data = dataValue;
-		next = null;
-	}
-	public void setNext(Node nextValue)
-	{
-		next = nextValue;
-	}
-	public Node getNext()
-	{
-		return next;
-	}
-}*/

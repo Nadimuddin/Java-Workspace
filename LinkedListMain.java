@@ -1,50 +1,64 @@
 package com.bridgelabz.main;
 import com.bridgelabz.utility.Utility;
 import com.bridgelabz.utility.LinkedList;
-import com.bridgelabz.utility.ReadFile;
-import com.bridgelabz.utility.WriteFile;
 class LinkedListMain
 {
-	public static void main(String arg[]) throws Exception
+    int choice,index;
+    String data;
+
+	LinkedListMain()throws Exception
 	{
-		String str,word[],search;
-		int i;	
-		Utility u = new Utility();
-		LinkedList list = new LinkedList();
-		ReadFile read = new ReadFile();
-		WriteFile write = new WriteFile();
-		str = read.readFile("DemoFile.txt");
-		word = str.split(" ");
-		
-		for(i=0; i<word.length; i++)
-		{
-			list.add(word[i]);
-			System.out.println(word[i]+" added to list");
-		}
-		System.out.println("\n");
-		
-		list.printAllData();
-		System.out.println("Enter data to search");
-		search = u.getStringInput();
-		if(list.searchData(search))
-		{
-			System.out.println(search+" word found and will delete from the file");
-			list.removeData(search);
-			System.out.println("List after deletion:");
-			list.printAllData();
-			if(u.searchingWordInArray(word, search) == word.length-1)
-				str = str.replace(search, "");
-			else
-				str = str.replace(search+" ", "");
-			write.writeFile("DemoFile.txt", str);
-		}
-		else
-		{
-			System.out.println("word not found & will append to the file");
-			System.out.println("List after insertion:");
-			list.printAllData();
-			str = str+" "+search;
-			write.writeFile("DemoFile.txt", str);
-		}
+        Utility u = new Utility();
+        LinkedList<String> ll = new LinkedList();
+		System.out.println("***************    Linked List    ***************");
+		System.out.println("1. Add item\n2. Add at specific position\n3. Remove item\n4. Remove item from specific position\n5. Search item\n6. Display list\n7.exit");
+        while(choice != 7)
+        {
+            System.out.println("Enter your choice:");
+            choice = u.getIntegerInput();
+            switch(choice)
+            {
+                case 1:
+                    System.out.print("Enter data to add: ");
+                    ll.add(u.getStringInput());
+					System.out.println("data added");
+                break;
+                case 2:
+                    System.out.println("Option under construction");
+                break;
+                case 3:
+                    System.out.print("Enter data to remove: ");
+                    data = u.getStringInput();
+                    if(ll.searchData(data))
+                        ll.removeData(data);
+                    else
+                        System.out.println("Data not found in the list");
+                break;
+                case 4:
+                    System.out.println("Option under construction");
+                break;
+                case 5:
+                    System.out.println("Enter item to search");
+                    index = ll.searchDataIndex(u.getStringInput());
+                    System.out.println("Data found at "+index+" index");
+                    
+                break;
+                case 6:
+                    ll.displayData();
+                break;
+                case 7:
+                    System.exit(0);
+                break;
+                default:
+                    System.out.println("Wrong input");
+                    System.exit(0);
+                break;
+            }
+        }
+	}
+	
+	public static void main(String arg[])throws Exception
+	{
+		new LinkedListMain();
 	}
 }

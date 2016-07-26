@@ -1,12 +1,12 @@
 package com.bridgelabz.utility; 
-class Node
+class Node<T>
 {
-	String data;
+	T data;
 	Node next;
 
 	public Node()
 	{}
-	public Node(String dataValue)
+	public Node(T dataValue)
 	{
 		data = dataValue;
 		next = null;

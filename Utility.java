@@ -97,8 +97,8 @@ public class Utility
 		int i,index=-1;
 		for(i=0; i<wordList.length; i++)
 		{
-			if(wordList[i] == target)
-				return i = index;
+			if(wordList[i].equals(target))
+				return index = i;
 		}
 		return index;
 	}
