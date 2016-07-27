@@ -44,7 +44,7 @@ class LinkedListMain
                     
                 break;
                 case 6:
-                    ll.printAllData();
+                    ll.displayData();
                 break;
                 case 7:
                     System.exit(0);

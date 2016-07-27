@@ -1,10 +1,12 @@
 package com.bridgelabz.main;
 import com.bridgelabz.utility.Utility;
 import com.bridgelabz.utility.ReadFile;
+import com.bridgelabz.utility.WriteFile;
 import com.bridgelabz.utility.LinkedList;
 class OrderedList
 {
 	ReadFile read = new ReadFile();
+	WriteFile write = new WriteFile();
 	Utility u = new Utility();
 	LinkedList ll = new LinkedList();
 	String fileContent,words[];
@@ -29,10 +31,19 @@ class OrderedList
 		System.out.print("Enter number to search: ");
 		search = u.getIntegerInput();
 		if(ll.searchData(search))
+		{	
+			System.out.println("Data found & will remove from the list");
+			System.out.println("Updated List");
 			ll.removeData(search);
+		}
 		else
-			System.out.println("Data not found");
+		{
+			System.out.println("Data not found & will insert into the list");
+			ll.addAtAppropriatePosition(search);
+		}	
 		ll.displayData();
+		write.writeFile("OrderedList",ll.getAllData());
+		//ll.getAllData();
 			
 	}
 }

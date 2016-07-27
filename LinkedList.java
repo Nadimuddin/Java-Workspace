@@ -2,10 +2,51 @@ package com.bridgelabz.utility;
 import com.bridgelabz.utility.Node;
 public class LinkedList<T>
 {
-	Node<Integer> head;
+	Node head;
 	Node temp;
 	T data;
-	public void add(int data)
+	/*public void add(int num)
+	{
+		Node<Integer> head = this.head;
+		Node<Integer> previous = this.head;
+		Node<Integer> next;// = previous.getNext();
+		temp = new Node(num);
+		if(this.head == null)
+			this.head = new Node(num);
+	}*/
+
+	public void add(int num)
+	{
+		Node<Integer> head = this.head;
+		Node<Integer> previous = this.head;
+		Node<Integer> next;// = previous.getNext();
+		temp = new Node(num);
+		if(this.head == null)
+			this.head = new Node(num);
+		else if(head.data > num)
+		{
+			this.head = temp;
+			temp.setNext(previous);
+		}
+		else
+		{
+			next = previous.getNext();
+			while(previous.getNext() != null)
+			{
+				if(previous.data < num && num < next.data)
+				{
+					previous.setNext(temp);
+					temp.setNext(next);
+					break;
+				}
+				previous = previous.getNext();
+				next = next.getNext();
+			}
+			if(previous.getNext() == null)
+				previous.setNext(temp);
+		}
+	}
+	public <T>void add(T data)
 	{
 		if(head == null)
 		{
@@ -24,32 +65,34 @@ public class LinkedList<T>
 		}
 	}
 
-	/*public void add(int num)
+	public void addAtAppropriatePosition(int num)
 	{
-		Node <Integer> head = new Node();
-		this.head = head;
-		Node<Integer> current = head;
+		Node<Integer> head = this.head;
+		Node<Integer> previous = this.head;
+		Node<Integer> next = previous.getNext();
 		temp = new Node(num);
-		
 		if(head.data > num)
 		{
-			head = temp;
-			temp.setNext(current);
+			this.head = temp;
+			temp.setNext(previous);
 		}
 		else
 		{
-			while(num < current.data)
+			while(previous.getNext() != null)
 			{
-				head = new Node(num);
+				if(previous.data < num && num < next.data)
+				{
+					previous.setNext(temp);
+					temp.setNext(next);
+					break;
+				}
+				previous = previous.getNext();
+				next = next.getNext();
 			}
-			if(head != null)
-			{
-				while(current.getNext() != null)
-					current = current.getNext();
-				current.setNext(temp);
-			}
+			if(previous.getNext() == null)
+				previous.setNext(temp);
 		}
-	}*/
+	}
 
 	//public void add(T data, int pos)
 
@@ -67,6 +110,26 @@ public class LinkedList<T>
 			}
 			System.out.println(current);
 		}
+	}
+	
+	public String getAllData()
+	{
+		String list="";
+		Node current = head;
+		if(head == null)
+			System.out.println("List is empty");
+		else
+		{
+			while(current != null)
+			{
+				list = list+current.data.toString()+" ";
+				//System.out.print(current.data+"->");
+				current = current.getNext();
+			}
+			//System.out.println(current);
+		}
+		//System.out.println(list);
+		return list;
 	}
 
 	public boolean searchData(String str)
@@ -128,6 +191,28 @@ public class LinkedList<T>
 		return index;
 	}
 
+	public int searchDataIndex(int num)
+	{
+		int index = -1;
+		int i=0;
+		Node current = head;
+		if(head == null)
+			System.out.println("List is empty");
+		else
+		{
+			while(current != null)
+			{
+				if(current.data == num)
+					return index = i;
+				current = current.getNext();
+				i++;
+			}
+			if(current == null)
+				return -1;
+		}
+		return index;
+	}
+
 	public void removeData(String str)
 	{
 		Node current = head;
@@ -171,6 +256,7 @@ public class LinkedList<T>
 				else if(current.getNext().data == num)
 				{
 						current.setNext(current.getNext().getNext());
+						System.out.println("data removed");
 						return;
 				}
 				current = current.getNext();
