@@ -1,15 +1,18 @@
 package com.bridgelabz.utility;
-public class Queue<T>
-{
+public class Queue<T >
+{	
+		
 	int arr[],size,rear,front,i;
+	char word[];
+	Object obj[];
 	public Queue(int size)
 	{
 		this.size = size;
-		arr = new int[size];
+		obj = new Object[size];
 		rear = -1;
 		front = -1;
 	}
-	public void add(int data)
+	public void add(T data)
 	{
 		if(front == size-1)
 			System.out.println("Queue is full!");
@@ -17,14 +20,14 @@ public class Queue<T>
 		{
 			if(isEmpty())
 			{
-				arr[++rear] = data;
+				obj[++rear] = data;
 				front = rear;
 			}
 			else
 			{
 				for(i=front; i>=0; i--)
-					arr[i+1] = arr[i];
-				arr[rear] = data;
+					obj[i+1] = obj[i];
+				obj[rear] = data;
 				front++;
 			}
 		}
@@ -35,13 +38,15 @@ public class Queue<T>
 			System.out.println("Queue is empty!");
 		else 
 			front--;
+		if(front == -1)
+			rear = front;
 	}
 	public void display()
 	{
 		System.out.print("rear->");
 		for(i=0; i<=front; i++)
 		{
-			System.out.print(arr[i]+" ");
+			System.out.print(obj[i]+" ");
 		}
 		System.out.println("<-front");
 	}
@@ -49,12 +54,20 @@ public class Queue<T>
 	{
 		for(i=0; i<=front; i++)
 		{
-			System.out.print("P"+arr[i]+" ");
+			System.out.print("P"+obj[i]+" ");
 		}
+	}
+	public boolean checkPalindrome(String str)
+	{
+		
+		for(i=0; i<=front; i++)
+			if(str.charAt(i) != obj[i])
+				return false;
+		return true;
 	}
 	public boolean isEmpty()
 	{
-		if(front==-1)
+		if(rear == -1 && front==-1)
 			return true;
 		return false;
 	}

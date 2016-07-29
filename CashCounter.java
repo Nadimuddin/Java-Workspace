@@ -5,7 +5,8 @@ class CashCounter
 {
 	int option=0,value=0,balance=50000,op;
 	Utility u = new Utility();
-	Queue q = new Queue(5);
+	int arr[] = new int[5];
+	Queue<Integer> q = new Queue(5);
 	CashCounter()
 	{
 		System.out.println("*****   Queue System for Cash Counter in Bank   *****");
