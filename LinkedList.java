@@ -5,16 +5,6 @@ public class LinkedList<T>
 	Node head;
 	Node temp;
 	T data;
-	/*public void add(int num)
-	{
-		Node<Integer> head = this.head;
-		Node<Integer> previous = this.head;
-		Node<Integer> next;// = previous.getNext();
-		temp = new Node(num);
-		if(this.head == null)
-			this.head = new Node(num);
-	}*/
-
 	public void add(int num)
 	{
 		Node<Integer> head = this.head;
