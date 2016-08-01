@@ -1,34 +1,21 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import Utility.Utility;
-import Utility.Node;
+
 public class Testing
 {
 	public static void main(String arg[]) throws Exception
 	{
-		Utility u = new Utility();
-		DataInputStream dis = new DataInputStream();
-		
-		/*BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	 	int i,j;
-	 	String str = "Sarfaroshi ke tamanna ab hamaare dil me hain";
-		String words[] = str.split(" ");
-		for(i=0; i<words.length; i++)
-			System.out.println(words[i]);
-		
-		Node n = new Node();
-		n.add("123");
-		Node n1 = new Node();
-		n.add("1");
-		String str = n.toString();*/
-	 	System.out.println();
+		Object obj = 'c';
+		char c = 'd';
+		if(obj == c)
+	 		System.out.println("condition true");
+		else
+			System.out.println("condition false");
 		
 	 
 	}
-	class Test
+	/*class Test
 	{
 		Test()
 		{
 			System.out.println("This is Test");
-		}
+		}*/
 }

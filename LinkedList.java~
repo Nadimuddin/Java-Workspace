@@ -202,7 +202,7 @@ public class LinkedList<T>
 		{
 			while(current != null)
 			{
-				if(current.data.equals(str))
+				if(current.data == num)
 					return index = i;
 				current = current.getNext();
 				i++;

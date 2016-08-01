@@ -32,6 +32,21 @@ public class Queue<T >
 			}
 		}
 	}
+	public void addFront(T data)
+	{
+		if(front == size-1)
+			System.out.println("Queue is full!");
+		else
+		{
+			if(isEmpty())
+			{
+				obj[++front] = data;
+				rear = front;
+			}
+			else
+				obj[++front] = data;
+		}
+	}
 	public void remove()
 	{
 		if(isEmpty())
@@ -41,9 +56,22 @@ public class Queue<T >
 		if(front == -1)
 			rear = front;
 	}
+	public void removeRear()
+	{
+		if(isEmpty())
+			System.out.println("Queue is empty!");
+		else
+		{
+			for(i=0; i<front; i++)
+				obj[i] = obj[i+1];
+			front--;
+		}
+		if(front == -1)
+			rear = front;
+	}
 	public void display()
 	{
-		System.out.print("rear->");
+		System.out.print("rear-> ");
 		for(i=0; i<=front; i++)
 		{
 			System.out.print(obj[i]+" ");
