@@ -1,6 +1,6 @@
 package com.bridgelabz.main;
 import com.bridgelabz.utility.Utility;
-public class BubbleSort
+public class BubbleSortDemo
 {
 	public static void main(String arg[])
 	{

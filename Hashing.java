@@ -10,7 +10,7 @@ class Hashing
 	WriteFile write = new WriteFile();
 	LinkedList list[] = new LinkedList[11];
 	Utility u = new Utility();
-	String temp[],str="";
+	String temp[],str="";t
 	int num,remainder,i;
 	Hashing()throws Exception
 	{

@@ -15,7 +15,8 @@ class Anagram
 		System.out.println("Enter 2nd string");
 		str2 = u.getStringInput();			
 
-		if(u.isAnagram(str1,str2))	//Method to check whether Anagram or not
+		//Method to check whether string is Anagram or not
+		if(u.isAnagram(str1,str2))
 			System.out.println("Strings are anagram");
 		else
 			System.out.println("Strings are not Anagram");

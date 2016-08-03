@@ -1,14 +1,15 @@
-
+import org.json.JSONObject;
 public class Testing
 {
 	public static void main(String arg[]) throws Exception
 	{
-		Object obj = 'c';
+		
+		/*Object obj = 'c';
 		char c = 'd';
 		if(obj == c)
 	 		System.out.println("condition true");
 		else
-			System.out.println("condition false");
+			System.out.println("condition false");*/
 		
 	 
 	}

@@ -1,0 +1,5 @@
+{
+	"Name": ["Rice", "Pulse", "Wheat"],
+	"Weight":[ 5, 8, 6],
+	"Price per Kg" :[ 45, 26, 35]
+}

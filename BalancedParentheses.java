@@ -10,7 +10,11 @@ class BalancedParentheses
 		int i;
 		
 		System.out.println("Enter expression:");
+		
+		//get expression from user
 		String exp = u.getStringInput();
+		
+		//call Stack library
 		stack = new Stack(exp.length());
 		for(i=0; i<exp.length(); i++)
 		{
@@ -19,6 +23,7 @@ class BalancedParentheses
 			else if(exp.charAt(i) == ')')
 				stack.pop();
 		}
+		
 		if(stack.isEmpty())
 			System.out.println("Expression is balanced");
 		else
