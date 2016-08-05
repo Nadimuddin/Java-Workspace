@@ -1,0 +1,37 @@
+{
+	"Doctor":[
+		{
+			"id" : "01",
+			"name" : "Durav",
+			"specialization" : "Orthologist",
+			"availability" : "10am - 2pm"
+		},
+		{
+			"id" : "02",
+			"name" : "Khalid",
+			"specialization" : "heart specialist",
+			"availability" : "17am - 11am"
+		},
+		{
+			"id" : "03",
+			"name" : "Sanjay",
+			"specialization" : "Urologist",
+			"availability" : "3pm - 7pm"
+		}
+	],
+	
+	"Patient":[
+		{
+			"id" : "41",
+			"name" : "Ahmed",
+			"Mobile": "8888826456",
+			"age" : 32
+		},
+		{
+			"id" : "41",
+			"name" : "Chetan",
+			"Mobile": "9266566985",
+			"age" : 28
+		}
+	]
+}
