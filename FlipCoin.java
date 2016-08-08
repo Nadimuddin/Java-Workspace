@@ -5,15 +5,16 @@ public class FlipCoin
 	public static void main(String args[])
 	{
 		Utility u = new Utility();
-		int n,head=0,tails=0;
+		int n;
+		float head=0,tails=0;
 		double ran;
 		float percent_head,percent_tails;
 		
 		System.out.println("Enter the number of times to flip coin");
 		n = u.getIntegerInput();
-		for(int i=0; i<=n; i++)
+		for(int i=0; i<n; i++)
 		{
-			if((ran=Math.random()) <0.5)
+			if(Math.random() <0.5)
 				tails++;
 			else
 				head++;
