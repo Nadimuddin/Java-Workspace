@@ -21,7 +21,6 @@ class Patient
 	{
 		jsonObj = (JSONObject) new JSONParser().parse(read.readFile("DoctorPatient.json"));
 		arr = (JSONArray)jsonObj.get("Patient");
-		System.out.println("All patient added to Array");
 		id = new String[arr.size()];
 		name = new String[arr.size()];
 		mob = new String[arr.size()];
@@ -33,34 +32,8 @@ class Patient
 			name[i] =(String)obj.get("name");
 			mob[i] =(String)obj.get("mobile");
 			age[i] =(String)obj.get("age");
-			
-			/*System.out.println("id: "+obj.get("id"));
-			System.out.println("name: "+obj.get("name"));
-			System.out.println("specialization: "+obj.get("specialization"));
-			System.out.println("availability: "+obj.get("availability"));*/
 		}
 	}
-	/*public void patientSystem(int option)throws Exception
-	{
-		doctor.doctor();
-		switch(option)
-		{
-			case 1:
-			System.out.println("Enter doctor's name/id/speciality to search");
-			int index = doctor.searchDoc(u.getStringInput());
-			if(index == -1)
-				System.out.println("data not found");
-			else
-				doctor.displayDocDetail(index);
-			break;
-			case 2:
-			System.out.println("under construction");
-			break;
-			default:
-			System.out.println("Wrong input");
-			break;
-		}
-	}*/
 	public int searchPatient(String key)
 	{
 		 for(i=0; i<id.length;i++)
@@ -72,19 +45,13 @@ class Patient
 	}
 	public void takeAppointment(String docName, String patName)throws Exception
 	{
-		/*arr.add("id : 05");
-		arr.add("name : Saurabh");
-		arr.add("specialization : physician");
-		arr.add("availability: 5-3");
-		jsonObj.put("Docotor",arr);
-		write.writeFile("appointment.json",jsonObj.toJSONString());*/
 		JSONObject obj = new JSONObject();
-		JSONArray list[] = new JSONArray[5];
+		JSONArray list[];
 		JSONArray temp = new JSONArray();
 		String str = read.readFile("Appointment.json");
 		if(str.equals(""))
 		{
-			System.out.println("Nothing in file");
+			list = new JSONArray[1];
 			list[0] = new JSONArray();
 			list[0].add(docName);
 			list[0].add(patName);
@@ -93,30 +60,39 @@ class Patient
 		}
 		else
 		{
-			//i=1;
+			int count=0;
 			obj = (JSONObject) new JSONParser().parse(read.readFile("Appointment.json"));
 			temp = (JSONArray)obj.get("Appointment");
+			list = new JSONArray[temp.size()+1];
 			for(i=0;i<temp.size();i++)
 			{
-				System.out.println("i in for "+i);
 				list[i] = new JSONArray();
 				list[i] = (JSONArray)temp.get(i);
+				if(docName.equals((String)list[i].get(0)))
+					count++;
 			}
-			System.out.println("i out :"+i);
-			list[i] = new JSONArray();
-			list[i].add(docName);
-			list[i].add(patName);
-			obj.put("Appointment",list);
-			/*System.out.println("list0: "+list[0]+"\nsize: "+list[0].size());
-			System.out.println("\nlist1: "+list[1]+"\nsize: "+list[1].size());
-			System.out.println("\nobj: "+obj+"\nsize: "+list[1].size());*/
-			write.writeFile("Appointment.json",obj.toJSONString());
-			/*obj.put("Appointment",list);
-			write.writeFile("Appointment.json",obj.toJSONString());*/
-			/*if(list.size() == 5)
+			if(count>=5)
 			{
-				System.out.println("appointment will be bool for another day");
-			}*/
+				System.out.println("Appointment full for today, do you want to appoint for next day"
+				+"\n1.Yes\n2.No");
+				if(u.getIntegerInput()==1)
+				{
+					JSONArray list2 = new JSONArray();
+					list2.add(docName);
+					list2.add(patName);
+					System.out.println("Appointment booked for next day");
+				}
+				else
+					return;
+			}
+			else
+			{
+				list[i] = new JSONArray();
+				list[i].add(docName);
+				list[i].add(patName);
+				obj.put("Appointment",list);
+				write.writeFile("Appointment.json",obj.toJSONString());
+			}
 		}
 	}
 	public void displayPatDetail(int index)

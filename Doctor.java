@@ -28,47 +28,35 @@ class Doctor
 			name[i] =(String)obj.get("name");
 			special[i] =(String)obj.get("specialization");
 			avail[i] =(String)obj.get("availability");
-			
-			/*temp = obj.get("name");
-			name[i] = (String)temp;
-			temp = obj.get("specialization");
-			special[i] = (String)temp;
-			temp = obj.get("availability");
-			avail[i] = (String)temp;
-			
-			System.out.println("id: "+obj.get("id"));
-			System.out.println("name: "+obj.get("name"));
-			System.out.println("specialization: "+obj.get("specialization"));
-			System.out.println("availability: "+obj.get("availability"));*/
 		}
 	}
-	/*public void doctorSystem(int option)throws Exception
-	{
-		patient.patient();
-		switch(option)
-		{
-			case 1:
-			System.out.println("Enter patient's's name/id/Mobile to search");
-			int index = patient.searchPatient(u.getStringInput());
-			if(index == -1)
-				System.out.println("Record not found");
-			else
-				patient.displayPatDetail(index);
-			break;
-			case 2:
-			System.out.println("under construction");
-			break;
-			default:
-			System.out.println("Wrong input");
-			break;
-		}
-	}*/
 	public int searchDoc(String key)
 	{
 		for(i=0; i<id.length;i++)
 			if(id[i].equals(key) || name[i].equals(key) || special[i].equals(key))
 				return i;
 		return -1;
+	}
+	public String[] appointmentTaken(String docName)throws Exception
+	{
+		JSONObject obj = new JSONObject();
+		obj = (JSONObject) new JSONParser().parse(read.readFile("Appointment.json"));
+		JSONArray temp = new JSONArray();
+		temp = (JSONArray)obj.get("Appointment");
+		JSONArray list[] = new JSONArray[temp.size()];
+		String patArray[] = new String[temp.size()];
+		int j=-1;
+		for(i=0; i<temp.size(); i++)
+		{
+			list[i] = new JSONArray();
+			list[i] = (JSONArray)temp.get(i);
+			if(docName.equals((String)list[i].get(0)))
+			{
+				j++;
+				patArray[j] =(String)list[i].get(1);
+			}
+		}
+		return patArray;
 	}
 	public String docName(int index)
 	{

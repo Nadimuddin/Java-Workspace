@@ -17,10 +17,6 @@ class DoctorPatient
 	JSONObject jsonObj;
 	DoctorPatient()throws Exception
 	{
-		//jsonObj = (JSONObject)parser.parse(read.readFile("DoctorPatient.json"));
-		//doctor.doctor((JSONArray)jsonObj.get("Doctor"));
-		//patient.patient((JSONArray)jsonObj.get("Patient"));
-		//doctor = new Doctor();
 		System.out.println("Enter system as\n1.Clinic\n2. Doctor\n3. Patient");
 		option = u.getIntegerInput();
 		switch(option)
@@ -43,17 +39,6 @@ class DoctorPatient
 			break;
 		}
 	}
-	
-	/*void doctor()
-	{
-		JSONArray doct = (JSONArray)jsonObj.get("Doctor");
-		//JSONObject doct0 = doc
-		//String id = (String)doct.get
-		JSONObject obj = (JSONObject)doct.get(1);
-		//Object id = obj.get("name");
-		String id = (String)obj.get("name");
-		System.out.println("Doctor1: "+id);
-	}*/
 	
 	public static void main(String arg[])throws Exception
 	{
